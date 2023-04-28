@@ -1,8 +1,8 @@
 from sklearn.linear_model import LogisticRegression
 
-# Load the data
-train_data = np.load('Datasets/pca_bool/train.npy')
-test_data = np.load('Datasets/pca_bool/test.npy')
+# Load the data for first dataset
+train_data = np.load('Datasets/raw data/train.npy')
+test_data = np.load('Datasets/raw data/test.npy')
 
 # Separate the inputs and labels
 X_train, y_train = train_data[:, :-1], train_data[:, -1]
@@ -19,6 +19,37 @@ f1 = f1_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
 
 # Print the results
+print(f'Test accuracy: {accuracy:.4f}')
+print(f'F1 score: {f1:.4f}')
+print(f'Recall: {recall:.4f}')
+
+# Load the data for second dataset
+train_data = np.load('Datasets/entire pca/train.npy')
+test_data = np.load('Datasets/entire pca/test.npy')
+
+X_train, y_train = train_data[:, :-1], train_data[:, -1]
+X_test, y_test = test_data[:, :-1], test_data[:, -1]
+
+clf = LogisticRegression(random_state=0, max_iter=10000, C=0.5).fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+f1 = f1_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
+print(f'Test accuracy: {accuracy:.4f}')
+print(f'F1 score: {f1:.4f}')
+print(f'Recall: {recall:.4f}')
+
+# Load the data for third dataset
+train_data = np.load('Datasets/pca_bool/train.npy')
+test_data = np.load('Datasets/pca_bool/test.npy')
+
+X_train, y_train = train_data[:, :-1], train_data[:, -1]
+X_test, y_test = test_data[:, :-1], test_data[:, -1]
+
+clf = LogisticRegression(random_state=0, max_iter=10000, C=0.5).fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+f1 = f1_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
 print(f'Test accuracy: {accuracy:.4f}')
 print(f'F1 score: {f1:.4f}')
 print(f'Recall: {recall:.4f}')
