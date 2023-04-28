@@ -16,12 +16,17 @@ clf = LogisticRegression(random_state=0, max_iter=10000, C=0.5).fit(X_train, y_t
 
 y_pred = clf.predict(X_test)
 f1 = f1_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
+
+#use model to predict probability that given y value is 1
+y_pred_proba = clf.predict_proba(X_test)[::,1]
+
+#calculate AUC of model
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
 
 # Print the results
 print(f'Test accuracy: {accuracy:.4f}')
 print(f'F1 score: {f1:.4f}')
-print(f'Recall: {recall:.4f}')
+print(f'AUC: {auc:.4f}')
 
 # Load the data for second dataset
 train_data = np.load('Datasets/entire pca/train.npy')
@@ -33,11 +38,17 @@ X_test, y_test = test_data[:, :-1], test_data[:, -1]
 clf = LogisticRegression(random_state=0, max_iter=10000, C=0.5).fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 f1 = f1_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
 
+#use model to predict probability that given y value is 1
+y_pred_proba = clf.predict_proba(X_test)[::,1]
+
+#calculate AUC of model
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
+
+# Print the results
 print(f'Test accuracy: {accuracy:.4f}')
 print(f'F1 score: {f1:.4f}')
-print(f'Recall: {recall:.4f}')
+print(f'AUC: {auc:.4f}')
 
 # Load the data for third dataset
 train_data = np.load('Datasets/pca_bool/train.npy')
@@ -49,10 +60,17 @@ X_test, y_test = test_data[:, :-1], test_data[:, -1]
 clf = LogisticRegression(random_state=0, max_iter=10000, C=0.5).fit(X_train, y_train)
 y_pred = clf.predict(X_test)
 f1 = f1_score(y_test, y_pred)
-recall = recall_score(y_test, y_pred)
+
+#use model to predict probability that given y value is 1
+y_pred_proba = clf.predict_proba(X_test)[::,1]
+
+#calculate AUC of model
+auc = metrics.roc_auc_score(y_test, y_pred_proba)
+
+# Print the results
 print(f'Test accuracy: {accuracy:.4f}')
 print(f'F1 score: {f1:.4f}')
-print(f'Recall: {recall:.4f}')
+print(f'AUC: {auc:.4f}')
 
 # import required modules for printing
 import numpy as np
